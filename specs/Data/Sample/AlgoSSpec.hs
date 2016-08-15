@@ -43,14 +43,14 @@ spec = do
     describe "sampleStep" $ do
         it "should return the input if the list is <N." $
             property $ \(NonEmpty xs :: NonEmptyList Int) -> monadicIO $ do
-                ss <- run . withSystemRandom . asGenIO $ \g -> do
+                ss <- run . withSystemRandom . asGenIO $ \g ->
                     F.foldM (sampleInit (2 * length xs) g) xs
                 assert $ ss == xs
 
         it "should return a sample of the list if the list is >=N." $
             property $ \(NonEmpty xs :: NonEmptyList Int) -> monadicIO $ do
-                ss <- run . withSystemRandom . asGenIO $ \g -> do
-                    F.foldM (sampleInit (floor $ toDouble (length xs)) g) xs
+                ss <- run . withSystemRandom . asGenIO $ \g ->
+                    F.foldM (sampleInit (floor $ toDouble (length xs) / 2) g) xs
                 assert $ length ss < length xs
 
         it "should maintain the order of the input." $
@@ -63,9 +63,7 @@ spec = do
         it "should accept the input incrementally." $
             property $ \(NonEmpty xs :: NonEmptyList Int) -> monadicIO $ do
                 ss <- run . withSystemRandom . asGenIO $ \g ->
-                    sampleDone
-                        =<< foldlM sampleStep
-                                   (sampleInit (floor $ toDouble (length xs)) g)
-                                   (L.sort xs)
+                    let s = sampleInit (floor $ toDouble (length xs) / 2) g
+                    in  sampleDone =<< foldlM sampleStep s (L.sort xs)
                 assert $ length ss < length xs
                 assert . all (uncurry (<=)) . zip ss $ tail ss
