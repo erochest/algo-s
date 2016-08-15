@@ -5,7 +5,7 @@ module Types where
 
 
 data Actions
-        = Default { defaultOutput :: !FilePath
-                  , defaultInput  :: !FilePath
-                  }
-        deriving (Show, Eq)
+    = Sample { defaultOutput :: !(Maybe FilePath)
+             , defaultInput  :: !(Maybe FilePath)
+             }
+    deriving (Show, Eq)

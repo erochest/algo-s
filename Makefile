@@ -58,7 +58,7 @@ bench:
 	stack bench $(BUILD_FLAGS)
 
 watch:
-	ghcid "--command=stack ghci"
+	stack build $(BUILD_FLAGS) --fast --file-watch
 
 watch-test:
 	stack test --file-watch --pedantic # --test-arguments "-m TODO"

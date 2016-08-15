@@ -8,11 +8,10 @@ module Actions where
 
 import           Control.Error
 
-import           Data.Sample.AlgoS.Actions.Default
+-- import           Data.Sample.AlgoS
 
 import           Types
 
 
 action :: Actions -> Script ()
-
-action Default{..} = defaultAction defaultInput defaultOutput
+action Sample{..} = undefined
