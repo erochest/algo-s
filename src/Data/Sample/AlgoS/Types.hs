@@ -17,3 +17,8 @@ module Data.Sample.AlgoS.Types where
 -- import           Data.Data
 -- import qualified Data.Text              as T
 -- import           GHC.Generics           hiding (to)
+
+import           Control.Foldl (FoldM)
+
+
+type Sampler m a = FoldM m a [a]
