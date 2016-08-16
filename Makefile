@@ -16,14 +16,13 @@ docs:
 	stack haddock
 	open `stack path --local-doc-root`/index.html
 
-# package:
-# build a release tarball or executable
-#
-# dev:
-# start dev server or process. `vagrant up`, `yesod devel`, etc.
-#
-# deploy:
-# prep and push
+package: test
+	stack sdist --pvp-bounds both
+
+deploy: test
+	stack upload --pvp-bounds both
+
+dev: watch
 
 configure:
 	cabal configure \
