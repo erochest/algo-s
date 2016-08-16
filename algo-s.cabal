@@ -1,5 +1,5 @@
 name:                algo-s
-version:             0.0.0.0
+version:             0.1.0.0
 synopsis:            An implementation of Knuth's algorithm S.
 description:         An implementaiton of Knuth's algorithm S
                      (https://rosettacode.org/wiki/Knuth%27s_algorithm_S)
