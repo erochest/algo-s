@@ -20,7 +20,7 @@ package: test
 	stack sdist --pvp-bounds both
 
 deploy: test
-	stack upload --pvp-bounds both
+	stack upload --pvp-bounds both .
 
 dev: watch
 
